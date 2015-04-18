@@ -23,7 +23,7 @@ html = urllib2.urlopen(url)
 soup = BeautifulSoup(html)
 
 # find all entries with the required class
-block = find('div',{'class':'wbf-related-documents-list'})
+block = soup.find('div',{'class':'wbf-related-documents-list'})
 links = block.findAll('a', href=True)
 
 for link in links:
