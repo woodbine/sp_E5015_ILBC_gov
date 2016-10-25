@@ -87,7 +87,7 @@ def convert_mth_strings ( mth_string ):
 #### VARIABLES 1.0
 
 entity_id = "E5015_ILBC_gov"
-url = "http://www.islington.gov.uk/about/council-works/councilfinance/Pages/expenditure.aspx"
+url = "https://www.islington.gov.uk/about-the-council/information-governance/freedom-of-information/popular-data/council-spending"
 errors = 0
 data = []
 
@@ -99,12 +99,12 @@ soup = BeautifulSoup(html, 'lxml')
 
 #### SCRAPE DATA
 
-block = soup.find('div',{'class':'wbf-related-documents-list'})
+block = soup.find('ul',{'class':'m-list-icon-small l-list-col3'})
 links = block.findAll('a', href=True)
 
 for link in links:
-    url = link['href']
-    title = link.contents[0]
+    url = 'https://www.islington.gov.uk'+link['href']
+    title = link.find('h3').text
     if '-' not in title:
         csvYr = title.split(' ')[-1]
         csvMth = title.split(' ')[-2][:3]
