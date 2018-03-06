@@ -52,7 +52,7 @@ def validateURL(url):
         else:
             ext = os.path.splitext(url)[1]
         validURL = r.getcode() == 200
-        validFiletype = ext.lower() in ['.csv', '.xls', '.xlsx']
+        validFiletype = ext.lower() in ['.csv', '.xls', '.xlsx', '.pdf']
         return validURL, validFiletype
     except:
         print ("Error validating URL.")
@@ -114,6 +114,13 @@ for link in links:
               csvMth = 'Q2'
         if 'January through March' in title:
               csvMth = 'Q1'
+        if '2014 to 2015' in title:
+              csvMth = 'Y1'
+              csvYr = '2014'
+        if 'July through to September' in title:
+              csvMth = 'Q3'
+        if 'October through December' in title:
+              csvMth = 'Q4'
         csvMth = convert_mth_strings(csvMth.upper())
         todays_date = str(datetime.now())
         data.append([csvYr, csvMth, url])
